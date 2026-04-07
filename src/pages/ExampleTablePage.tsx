@@ -222,6 +222,12 @@ export function ExampleTablePage() {
             tableHeader={{
               title: 'Example - Table Page',
               subtitle: 'Interactive table from Signal Design System',
+              showSearch: true,
+              searchType: "basic",
+              actions: [
+                { id: 'cta-action-outlined', variant: 'outlined', children: 'CTA Action', onClick: () => {} },
+                { id: 'cta-action', variant: 'contained', children: 'CTA Action', onClick: () => {} },
+              ]
             }}
             rows={rows}
             columns={columns}
