@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { GridRenderCellParams, GridSortModel } from '@mui/x-data-grid-pro'
 import MenuItem from '@mui/material/MenuItem'
+import { alpha, type Theme } from '@mui/material/styles'
 import {
   Avatar,
   Box,
+  Chip,
   DataGrid,
   Divider,
   getInitials,
@@ -20,8 +22,43 @@ import {
   type ToolbarFilterConfig,
 } from '@exotel-npm-dev/signal-design-system'
 import { fetchUsersQuery } from '../api/usersApi'
-import type { TableUserRow } from '../data/tableUser'
+import type { TableUserRow, TableUserStatus } from '../data/tableUser'
 import type { FilterRecords } from '../types/filterRecords'
+
+/** Tonal chip fill aligned with Signal DS `MuiButton` `[data-variant="tonal"]` tokens (alpha on semantic main). */
+function tonalChipSx(theme: Theme, semantic: 'success' | 'warning' | 'error') {
+  const palette = theme.palette[semantic]
+  const isDark = theme.palette.mode === 'dark'
+  const bgAlpha = isDark ? 0.16 : 0.12
+  const fs = theme.typography.pxToRem(13)
+  return {
+    backgroundColor: alpha(palette.main, bgAlpha),
+    color: palette.main,
+    boxShadow: 'none',
+    fontSize: fs,
+    fontWeight: theme.typography.fontWeightMedium,
+    lineHeight: 1.25,
+    '& .MuiChip-label': {
+      fontSize: fs,
+      lineHeight: 1.25,
+    },
+  }
+}
+
+function statusToSemantic(status: TableUserStatus): 'success' | 'warning' | 'error' {
+  switch (status) {
+    case 'Active':
+      return 'success'
+    case 'Suspended':
+      return 'warning'
+    case 'Scheduled for Deletion':
+      return 'error'
+    default: {
+      const _x: never = status
+      return _x
+    }
+  }
+}
 
 const roleOptions = [
   { value: 'all', label: 'All' },
@@ -87,7 +124,7 @@ export function ExampleTablePage() {
   const [rowCount, setRowCount] = useState(0)
   const [loading, setLoading] = useState(true)
   const [loadError, setLoadError] = useState<string | null>(null)
-  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 5 })
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 25 })
   const [sortModel, setSortModel] = useState<GridSortModel>([])
   const [filterRecords, setFilterRecords] = useState<FilterRecords>(() => ({ ...INITIAL_TOOLBAR_FILTERS }))
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null)
@@ -137,16 +174,54 @@ export function ExampleTablePage() {
 
   const toolbarFilters = useMemo(() => buildToolbarFilters(), [])
 
-  const renderUserNameCell = useCallback((params: GridRenderCellParams) => (
-    <Stack height='100%' alignItems="center" direction="row" spacing={1}>
-      <Avatar sx={{ backgroundColor: stringToColor(params.value), width: 24, height: 24, fontSize: 12 }}>{getInitials(params.value)}</Avatar>
-      <Typography variant="body2">
-        {params.value}
-      </Typography>
-    </Stack>
-  ), [])
+  const renderUserNameCell = useCallback((params: GridRenderCellParams) => {
+    const name = String(params.value ?? '')
+    const raw = stringToColor(name)
+    return (
+      <Stack height='100%' alignItems="center" direction="row" spacing={1}>
+        <Avatar
+          sx={(theme) => ({
+            width: 24,
+            height: 24,
+            fontSize: theme.typography.pxToRem(12),
+            fontWeight: theme.typography.fontWeightMedium,
+            /* Per-user hue from DS `stringToColor`; mix toward neutrals so white initials stay ≥7:1 in both modes */
+            bgcolor:
+              theme.palette.mode === 'light'
+                ? `color-mix(in srgb, ${raw} 52%, ${theme.palette.common.black})`
+                : `color-mix(in srgb, ${raw} 42%, ${theme.palette.grey[900]})`,
+            color: theme.palette.common.white,
+          })}
+        >
+          {getInitials(name)}
+        </Avatar>
+        <Typography variant="body2">
+          {params.value}
+        </Typography>
+      </Stack>
+    )
+  }, [])
 
-  const columns: GridColDef[] = useMemo(
+  const renderStatusCell = useCallback((params: GridRenderCellParams<TableUserRow, TableUserStatus>) => {
+    const status = params.value
+    if (!status) {
+      return null
+    }
+    const semantic = statusToSemantic(status)
+    return (
+      <Stack height="100%" alignItems="center" direction="row">
+        <Chip
+          label={status}
+          size="small"
+          color={semantic}
+          variant="filled"
+          sx={(theme) => tonalChipSx(theme, semantic)}
+        />
+      </Stack>
+    )
+  }, [])
+
+  const columns: GridColDef<TableUserRow>[] = useMemo(
     () => [
       {
         field: 'userName',
@@ -162,6 +237,14 @@ export function ExampleTablePage() {
         flex: 1.2,
         minWidth: 240,
         sortable: true,
+      },
+      {
+        field: 'status',
+        headerName: 'Status',
+        flex: 0.9,
+        minWidth: 200,
+        sortable: true,
+        renderCell: renderStatusCell,
       },
       {
         field: 'role',
@@ -196,7 +279,7 @@ export function ExampleTablePage() {
         ),
       },
     ],
-    [],
+    [handleMenuOpen, renderStatusCell, renderUserNameCell],
   )
 
   return (

@@ -45,7 +45,7 @@ function applyToolbarFilters(rows: TableUserRow[], filters: FilterRecords): Tabl
   })
 }
 
-const SORTABLE_FIELDS = new Set(['userName', 'email', 'role', 'team'])
+const SORTABLE_FIELDS = new Set(['userName', 'email', 'status', 'role', 'team'])
 
 function compareRows(a: TableUserRow, b: TableUserRow, sortModel: GridSortModel): number {
   const primary = sortModel[0]

@@ -1,8 +1,12 @@
+/** Account lifecycle status for the users table */
+export type TableUserStatus = 'Active' | 'Suspended' | 'Scheduled for Deletion'
+
 /** Row shape returned by the users table API */
 export type TableUserRow = {
   id: number
   userName: string
   email: string
+  status: TableUserStatus
   role: string
   team: string
 }
