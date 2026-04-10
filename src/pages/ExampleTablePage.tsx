@@ -92,6 +92,7 @@ function buildToolbarFilters(): ToolbarFilterConfig[] {
       id: 'role',
       type: 'select',
       label: 'Role',
+      iconName: 'user',
       options: roleOptions,
       initialValue: INITIAL_TOOLBAR_FILTERS.role,
     },
@@ -99,6 +100,7 @@ function buildToolbarFilters(): ToolbarFilterConfig[] {
       id: 'team',
       type: 'select',
       label: 'Team',
+      iconName: 'users-three',
       options: teamOptions,
       initialValue: INITIAL_TOOLBAR_FILTERS.team,
     },
@@ -269,6 +271,7 @@ export function ExampleTablePage() {
           <IconButton
             size="small"
             aria-label="More actions"
+            variant='outlined'
             onClick={(e) => {
               e.stopPropagation()
               handleMenuOpen(e, params.id)
@@ -287,7 +290,6 @@ export function ExampleTablePage() {
       elevation={0}
       sx={{
         borderRadius: 1,
-        p: 2,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -309,8 +311,12 @@ export function ExampleTablePage() {
               searchType: "basic",
               actions: [
                 { id: 'cta-action-outlined', variant: 'outlined', children: 'CTA Action', onClick: () => {} },
-                { id: 'cta-action', variant: 'contained', children: 'CTA Action', onClick: () => {} },
-              ]
+                { id: 'cta-action', variant: 'contained', children: 'CTA Action', startIconProps: { name: 'plus', size: 'sm' }, onClick: () => {} },
+                { id: 'export-action', variant: 'outlined', children: 'Export', startIconProps: { name: 'export', size: 'sm' }, onClick: () => {} },
+                { id: 'import-action', variant: 'outlined', children: 'Import', startIconProps: { name: 'download-simple', size: 'sm' }, onClick: () => {} },
+                { id: 'settings-action', variant: 'outlined', children: 'Settings', startIconProps: { name: 'gear', size: 'sm' }, onClick: () => {} },
+              ],
+              maxVisibleActions: 2,
             }}
             rows={rows}
             columns={columns}
@@ -339,6 +345,11 @@ export function ExampleTablePage() {
             onRefresh={() =>
               void loadPage(paginationModel.page, paginationModel.pageSize, sortModel, filterRecords)
             }
+            bulkDeleteConfig={{
+              onDelete: (selectedIds) => {
+                alert(`Selected items: ${selectedIds.join(', ')}`)
+              },
+            }}
             initialState={{pinnedColumns: {right: ['actions']}}}
           />
           <Menu
