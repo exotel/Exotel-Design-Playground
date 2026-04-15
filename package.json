@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@exotel-npm-dev/signal-design-system": "file:public/exotel-npm-dev-signal-design-system-1.0.9.tgz",
+    "@phosphor-icons/react": "^2.1.10",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.2"

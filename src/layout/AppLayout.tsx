@@ -38,6 +38,14 @@ function buildNavSections(navigate: NavigateFunction): NavSectionProps[] {
           onClick: go('/example-table'),
         },
         {
+          id: 'closed-interaction',
+          iconName: 'columns',
+          label: 'Closed Interaction',
+          path: '/closed-interaction',
+          openNewPage: false,
+          onClick: go('/closed-interaction'),
+        },
+        {
           id: 'date-time',
           iconName: 'calendar-blank',
           label: 'Example - Date & Time',

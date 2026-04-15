@@ -4,6 +4,7 @@ import { RequireAuth } from './layout/RequireAuth'
 import { MainContent } from './layout/MainContent'
 import { DateTimeShowcasePage } from './pages/DateTimeShowcasePage'
 import { ExampleTablePage } from './pages/ExampleTablePage'
+import { ClosedInteractionPage } from './pages/ClosedInteractionPage'
 import { ExampleSettingsPage } from './pages/ExampleSettingsPage'
 import { HomePage } from './pages/HomePage'
 import { SignInPage } from './pages/SignInPage'
@@ -16,6 +17,7 @@ export default function App() {
         <Route element={<AppLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/example-table" element={<ExampleTablePage />} />
+          <Route path="/closed-interaction" element={<ClosedInteractionPage />} />
           <Route path="/date-time" element={<DateTimeShowcasePage />} />
           <Route path="/example-settings" element={<ExampleSettingsPage />} />
           <Route path="/example-node" element={<MainContent label="example node flow" />} />
