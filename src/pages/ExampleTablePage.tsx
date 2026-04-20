@@ -294,6 +294,7 @@ export function ExampleTablePage() {
         display: 'flex',
         flexDirection: 'column',
         bgcolor: 'surface.elevation1',
+        overflow: 'hidden'
       }}
     >
       <Stack spacing={1.5} sx={{ flex: 1, height: '100%' }}>
