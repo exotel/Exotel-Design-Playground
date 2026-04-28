@@ -62,6 +62,14 @@ function buildNavSections(navigate: NavigateFunction): NavSectionProps[] {
           onClick: go('/example-settings'),
         },
         {
+          id: 'ai-chat',
+          iconName: 'sparkle',
+          label: 'AI Chat',
+          path: '/ai-chat',
+          openNewPage: false,
+          onClick: go('/ai-chat'),
+        },
+        {
           id: 'example-node',
           iconName: 'layout',
           label: 'Example - Node Flow',

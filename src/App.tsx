@@ -7,6 +7,7 @@ import { ExampleTablePage } from './pages/ExampleTablePage'
 import { ClosedInteractionPage } from './pages/ClosedInteractionPage'
 import { ExampleSettingsPage } from './pages/ExampleSettingsPage'
 import { HomePage } from './pages/HomePage'
+import { AIChatPage } from './pages/AIChatPage'
 import { SignInPage } from './pages/SignInPage'
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/closed-interaction" element={<ClosedInteractionPage />} />
           <Route path="/date-time" element={<DateTimeShowcasePage />} />
           <Route path="/example-settings" element={<ExampleSettingsPage />} />
+          <Route path="/ai-chat" element={<AIChatPage />} />
           <Route path="/example-node" element={<MainContent label="example node flow" />} />
           <Route path="/example-4/child-1" element={<MainContent label="example 4 child 1" />} />
           <Route path="/example-4/child-2" element={<MainContent label="example 4 child 2" />} />
