@@ -137,61 +137,57 @@ export function AppLayout() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <ExoAppBar
-        appLauncherProps={{
-          type: 'default',
-          iconName: 'squares-four',
-          products: [
-            {
-              id: 'design-playground',
-              name: 'Design Playground',
-              section: 'Products',
-              icon: <Icon name="squares-four" size="sm" />,
-              onProductClick: () => {},
-            },
-            {
-              id: 'contact-center',
-              name: 'Contact Center',
-              section: 'Products',
-              icon: <Icon name="headset" size="sm" />,
-              onProductClick: () => {},
-            },
-            {
-              id: 'campaigns',
-              name: 'Campaigns',
-              section: 'Products',
-              icon: <Icon name="chart-bar" size="sm" />,
-              onProductClick: () => {},
-            },
-          ],
-        }}
+        appLauncherType="default"
+        appLauncherIconName="squares-four"
+        appLauncherProducts={[
+          {
+            id: 'design-playground',
+            name: 'Design Playground',
+            section: 'Products',
+            icon: <Icon name="squares-four" size="sm" />,
+            onProductClick: () => {},
+          },
+          {
+            id: 'contact-center',
+            name: 'Contact Center',
+            section: 'Products',
+            icon: <Icon name="headset" size="sm" />,
+            onProductClick: () => {},
+          },
+          {
+            id: 'campaigns',
+            name: 'Campaigns',
+            section: 'Products',
+            icon: <Icon name="chart-bar" size="sm" />,
+            onProductClick: () => {},
+          },
+        ]}
         brandLogo={<img src={brandLogo} alt="Exotel Playground Logo" style={{ width: 'unset', height: 'unset' }} />}
         brandLogoStyle={{ width: 'unset', height: 'unset' }}
-        avatarMenuProps={{
-          avatarName: 'OP User',
-          menuGroups: [
-            {
-              id: 'primary',
-              items: [
-                { id: 'item1', label: 'Menu Item 1', onClick: () => console.log('item1') },
-                { id: 'item2', label: 'Menu Item 2', onClick: () => console.log('item2') },
-                { id: 'item3', label: 'Menu Item 3', onClick: () => console.log('item3') },
-              ],
-            },
-            {
-              id: 'secondary',
-              items: [
-                { id: 'error-logs', label: 'Send Error Logs', onClick: () => console.log('error-logs') },
-                { id: 'shortcuts', label: 'Keyboard Shortcuts', onClick: () => console.log('shortcuts') },
-              ],
-            }
-          ],
-          footerInfo: [{ label: 'Version', value: '1.0.0' }],
-          selectedTheme: mode || 'system',
-          onThemeChange: setMode,
-          onLogout: () => {
-            clearPlaygroundSession()
-            navigate('/sign-in', { replace: true })
+        avatarName="OP User"
+        avatarMenuGroups={[
+          {
+            id: 'primary',
+            items: [
+              { id: 'item1', label: 'Menu Item 1', onClick: () => console.log('item1') },
+              { id: 'item2', label: 'Menu Item 2', onClick: () => console.log('item2') },
+              { id: 'item3', label: 'Menu Item 3', onClick: () => console.log('item3') },
+            ],
           },
+          {
+            id: 'secondary',
+            items: [
+              { id: 'error-logs', label: 'Send Error Logs', onClick: () => console.log('error-logs') },
+              { id: 'shortcuts', label: 'Keyboard Shortcuts', onClick: () => console.log('shortcuts') },
+            ],
+          },
+        ]}
+        avatarFooterInfo={[{ label: 'Version', value: '1.0.0' }]}
+        avatarSelectedTheme={mode || 'system'}
+        onAvatarThemeChange={setMode}
+        onAvatarLogout={() => {
+          clearPlaygroundSession()
+          navigate('/sign-in', { replace: true })
         }}
         onNotificationClick={() => {}}
       />

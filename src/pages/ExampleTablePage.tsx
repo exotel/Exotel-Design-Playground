@@ -16,7 +16,7 @@ import {
   Menu,
   Paper,
   Stack,
-  stringToColor,
+  getAvatarColors,
   Typography,
   type GridColDef,
   type ToolbarFilterConfig,
@@ -178,7 +178,6 @@ export function ExampleTablePage() {
 
   const renderUserNameCell = useCallback((params: GridRenderCellParams) => {
     const name = String(params.value ?? '')
-    const raw = stringToColor(name)
     return (
       <Stack height='100%' alignItems="center" direction="row" spacing={1}>
         <Avatar
@@ -187,12 +186,7 @@ export function ExampleTablePage() {
             height: 24,
             fontSize: theme.typography.pxToRem(12),
             fontWeight: theme.typography.fontWeightMedium,
-            /* Per-user hue from DS `stringToColor`; mix toward neutrals so white initials stay ≥7:1 in both modes */
-            bgcolor:
-              theme.palette.mode === 'light'
-                ? `color-mix(in srgb, ${raw} 52%, ${theme.palette.common.black})`
-                : `color-mix(in srgb, ${raw} 42%, ${theme.palette.grey[900]})`,
-            color: theme.palette.common.white,
+            ...getAvatarColors(name),
           })}
         >
           {getInitials(name)}

@@ -26,7 +26,7 @@ import {
   Menu,
   Paper,
   Stack,
-  stringToColor,
+  getAvatarColors,
   Tooltip,
   Typography,
   getInitials,
@@ -302,7 +302,6 @@ function CopyableIdCell({ displayText, copyText }: { displayText: string; copyTe
 
 function CustomerCell({ row }: { row: ClosedInteractionRow }) {
   const name = row.customerName
-  const raw = stringToColor(name)
   return (
     <Stack direction="row" alignItems="center" spacing={1} height="100%" sx={{ minWidth: 0 }}>
       <Avatar
@@ -311,11 +310,7 @@ function CustomerCell({ row }: { row: ClosedInteractionRow }) {
           height: 24,
           fontSize: theme.typography.pxToRem(12),
           fontWeight: theme.typography.fontWeightMedium,
-          bgcolor:
-            theme.palette.mode === 'light'
-              ? `color-mix(in srgb, ${raw} 52%, ${theme.palette.common.black})`
-              : `color-mix(in srgb, ${raw} 42%, ${theme.palette.grey[900]})`,
-          color: theme.palette.common.white,
+          ...getAvatarColors(name),
         })}
       >
         {getInitials(name)}
