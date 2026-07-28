@@ -7,7 +7,7 @@ import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ExotelThemeProvider>
+    <ExotelThemeProvider defaultFont="ibm-plex-sans">
       <BrowserRouter>
         <App />
       </BrowserRouter>

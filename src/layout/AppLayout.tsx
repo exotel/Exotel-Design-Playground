@@ -30,6 +30,14 @@ function buildNavSections(navigate: NavigateFunction): NavSectionProps[] {
           onClick: go('/'),
         },
         {
+          id: 'onboarding',
+          iconName: 'rocket-launch',
+          label: 'Onboarding',
+          path: '/onboarding',
+          openNewPage: false,
+          onClick: go('/onboarding'),
+        },
+        {
           id: 'example-table',
           iconName: 'columns',
           label: 'Example - Table Page',

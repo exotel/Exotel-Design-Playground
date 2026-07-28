@@ -8,6 +8,7 @@ import { ClosedInteractionPage } from './pages/ClosedInteractionPage'
 import { ExampleSettingsPage } from './pages/ExampleSettingsPage'
 import { HomePage } from './pages/HomePage'
 import { AIChatPage } from './pages/AIChatPage'
+import { OnboardingPage } from './pages/OnboardingPage'
 import { SignInPage } from './pages/SignInPage'
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
       <Route element={<RequireAuth />}>
         <Route element={<AppLayout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/example-table" element={<ExampleTablePage />} />
           <Route path="/closed-interaction" element={<ClosedInteractionPage />} />
           <Route path="/date-time" element={<DateTimeShowcasePage />} />

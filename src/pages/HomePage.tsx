@@ -114,7 +114,7 @@ export function HomePage() {
           <Grid size={{ xs: 12, sm: 6 }}>
             <LinkCard
               icon={<AssetIcon src={storybookLogo} alt="Storybook" />}
-              onClick={() => handleLinkClick('https://69ba4becb6eabba83cbd8bc1-elutanrgjd.chromatic.com')}
+              onClick={() => handleLinkClick('https://main--69ba4becb6eabba83cbd8bc1.chromatic.com')}
               title="Storybook"
               description="Browse all available Signal components in our design system."
             />
