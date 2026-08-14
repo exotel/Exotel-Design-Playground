@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import type { TextFieldProps } from '@mui/material/TextField'
-import { EnhancedTextField } from '@exotel-npm-dev/signal-design-system'
+import { TextField } from '@exotel-npm-dev/signal-design-system'
 
 export type LabelOnlyDateRangeTextFieldProps = TextFieldProps & {
   filterLabel: string
@@ -15,7 +15,7 @@ export const LabelOnlyDateRangeTextField = forwardRef<HTMLDivElement, LabelOnlyD
     const { filterLabel, value: _ignored, InputProps, ...rest } = props
     const restField = rest as TextFieldProps
     return (
-      <EnhancedTextField
+      <TextField
         ref={ref}
         {...restField}
         showLabel={false}

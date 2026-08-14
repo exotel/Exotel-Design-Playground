@@ -12,7 +12,7 @@ import { useTheme } from '@mui/material/styles'
 import {
   Button,
   DateRangePicker,
-  EnhancedTextField,
+  TextField,
   Icon,
   MultiSelect,
 } from '@exotel-npm-dev/signal-design-system'
@@ -212,7 +212,7 @@ export function ResponsiveToolbarFilterField({
         )
       }
       return (
-        <EnhancedTextField
+        <TextField
           {...commonProps}
           id={filter.id}
           key={filter.id}
@@ -265,7 +265,7 @@ export function ResponsiveToolbarFilterField({
               {option.label}
             </MenuItem>
           ))}
-        </EnhancedTextField>
+        </TextField>
       )
     }
 

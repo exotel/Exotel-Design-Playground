@@ -5,7 +5,7 @@ import {
   Checkbox,
   Chip,
   Divider,
-  EnhancedTextField,
+  TextField,
   FormControlLabel,
   FormGroup,
   FormHelperText,
@@ -361,7 +361,7 @@ export function ExampleSettingsPage() {
                 title="Enable WhatsApp Channel"
                 description="Contact customers or allow customers to connect via WhatsApp messaging."
               >
-                <EnhancedTextField
+                <TextField
                   label="Text Field"
                   value={demoField}
                   onChange={(e) => setDemoField(e.target.value)}

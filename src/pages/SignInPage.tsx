@@ -4,7 +4,7 @@ import {
   Alert,
   Box,
   Button,
-  EnhancedTextField,
+  TextField,
   Icon,
   IconButton,
   InputAdornment,
@@ -263,7 +263,7 @@ export function SignInPage() {
             ) : null}
 
             <Stack spacing={3} sx={{ width: '100%' }}>
-              <EnhancedTextField
+              <TextField
                 label="Email"
                 placeholder="abc@xyz.com"
                 value={email}
@@ -274,7 +274,7 @@ export function SignInPage() {
               />
 
               <Stack spacing={0.5}>
-                <EnhancedTextField
+                <TextField
                   label="Passsword"
                   placeholder="Enter Password"
                   type={showPassword ? 'text' : 'password'}

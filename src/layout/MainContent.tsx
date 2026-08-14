@@ -1,4 +1,4 @@
-import { EnhancedTextField, Paper, Typography } from '@exotel-npm-dev/signal-design-system'
+import { Paper, TextField, Typography } from '@exotel-npm-dev/signal-design-system'
 
 export function MainContent({ label }: { label: string }) {
   return (
@@ -11,7 +11,7 @@ export function MainContent({ label }: { label: string }) {
       }}
     >
       <Typography variant="body1">This is {label} page</Typography>
-      <EnhancedTextField label="Name" placeholder='Enter your name' size="small" />
+      <TextField label="Name" placeholder='Enter your name' size="small" />
     </Paper>
   )
 }
